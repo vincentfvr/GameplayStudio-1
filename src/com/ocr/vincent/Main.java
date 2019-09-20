@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 	    Modules modules = new Modules();
-                modules.runGame();
+        System.out.println("---[ESCAPE GAME]---");
+        modules.runGame();
     }
 }
