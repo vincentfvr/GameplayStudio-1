@@ -7,31 +7,22 @@ public class Modules {
     Scanner sc = new Scanner(System.in);
     int[] theComb = new int[4];
     int[] myComb = new int[4];
-
+    int myValue = 0;
     int i;
+
     /**
      * LANCEMENT DU JEU
      */
     public void runGame() {
         /** LANCEMENT DU JEU*/
-        int myValue = 0;
         int counter = 1;
         System.out.println("---[ESCAPE GAME]---");
         System.out.println("Trouvez la combinaison suivante : [x] [x] [x] [x]");
 
-        /** Création de la combinaison*/
         this.generateComb();
-
         System.out.println("combinaison à trouver : "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
         do {
             this.displayAskComb(counter);
-            myValue = sc.nextInt();
-            if (myValue<1 || myValue>9) {
-                System.out.println("Veuillez saisir une valeur comprise entre 1 et 9");
-            } else {
-                this.displayMyCombination(counter, myValue);
-                counter = counter + 1;
-            }
         } while (counter<=4 && (myValue>=1 || myValue<=9));
         this.displayResult();
     }
@@ -40,10 +31,12 @@ public class Modules {
      *  Création de la combinaison à trouver
      */
     public void generateComb() {
+        int nb = 0;
         for ( i = 0 ; i<4; i++) {
-            int nb = 0;
-            nb = (int) (Math.random() * 10 );     /** avec 0 < nb < 9 */
-            theComb[i] = nb;
+            do {
+                nb = (int) (Math.random() * 10 );     /** avec 0 < nb < 9 */
+                theComb[i] = nb;
+            } while (nb==0);
         }
     }
 
@@ -52,7 +45,15 @@ public class Modules {
      * @param counter nombre de propositions faites sur les 4 possibles
      */
     public void displayAskComb(int counter) {
-            System.out.println("Saisir un chiffre compris entre 1 et 9 et validez avec Entrée (Chiffre " + counter + "/4)");
+            System.out.println("Saisir un chiffre (entre 1 et 9) et validez avec Entrée (Chiffre " + counter + "/4)");
+            myValue = sc.nextInt();
+
+        if (myValue<1 || myValue>9) {
+            System.out.println("Veuillez saisir une valeur comprise entre 1 et 9");
+        } else {
+            this.displayMyCombination(counter, myValue);
+            counter = counter + 1;
+        }
     }
 
     /**
