@@ -7,6 +7,7 @@ public class Modules {
     Scanner sc = new Scanner(System.in);
     int[] theComb = new int[4];
     int[] myComb = new int[4];
+
     int i;
     /**
      * LANCEMENT DU JEU
@@ -20,6 +21,7 @@ public class Modules {
 
         /** Création de la combinaison*/
         this.generateComb();
+
         System.out.println("combinaison à trouver : "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
         do {
             this.displayAskComb(counter);
@@ -67,13 +69,24 @@ public class Modules {
             case 4: myComb[3] = myValue;
                 break;
         }
-        System.out.println("combinaison choisie : "+myComb[0] + myComb[1] + myComb[2] + myComb[3]);
+        System.out.println("combinaison choisie : "+ myComb[0] + myComb[1] + myComb[2] + myComb[3]);
     }
 
     /**
-     * Affiche la réponse
+     * Affiche la réponse en fonction de la proposition
      */
     public void displayResult() {
         System.out.println("combinaison à trouver : "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
+        String listResults = "";
+        for ( i = 0 ; i<4; i++) {
+           if (myComb[i]==theComb[i]) {
+               listResults = listResults + "=";
+           } else if (myComb[i]<theComb[i]) {
+               listResults = listResults + "+";
+           }else if (myComb[i]>theComb[i]) {
+                listResults = listResults + "-";
+           }
+        }
+        System.out.println(listResults);
     }
 }
