@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Modules {
     Scanner sc = new Scanner(System.in);
     int nbMode;
-    int cheatMode = 0;
+    int devMode = 0;
     int[] theComb = new int[4];
     int[] myComb = new int[4];
     int myValue = 0;
@@ -32,9 +32,7 @@ public class Modules {
             this.displayResult();
             nbTry=nbTry+1;
         } while (victory == 0);
-        System.out.println("Gagnéééééééé ------> A EFFACER");
     }
-
 
     /**
      * Affichage du choix du mode et control de saisie
@@ -53,9 +51,9 @@ public class Modules {
                 case 3:
                     System.out.println("MODE DUEL SÉLECTIONNÉ");
                     break;
-                case 1337:
+                case 1234:
                     System.out.println("MODE DÉVELOPPEUR ACTIF");
-                    cheatMode=1;
+                    devMode=1;
                     break;
                 default:
                     System.out.println("Taper 1,2 ou 3");
@@ -75,8 +73,8 @@ public class Modules {
                 theComb[i] = nb;
             } while (nb==0);
         }
-        if (cheatMode==1) {
-            System.out.println("CHEATMODE: "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
+        if (devMode==1) {
+            System.out.println("DEV_MODE: "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
         }
 
     }
@@ -97,7 +95,7 @@ public class Modules {
     }
 
     /**
-     * Affiche la poposition faite avec en plus la numérotation
+     * Affiche la proposition faite avec + la numérotation
      */
     public void displayMyCombination(int counter, int myValue) {
         switch (counter) {
@@ -110,9 +108,9 @@ public class Modules {
             case 4: myComb[3] = myValue;
                 break;
         }
-        System.out.println("SUPP*combinaison juste :"  + myComb[0] + myComb[1] + myComb[2] + myComb[3]);
-        if (cheatMode==1) {
-            System.out.println("CHEAT MODE : "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
+        System.out.println("--> Ma combinaison : "  + myComb[0] + myComb[1] + myComb[2] + myComb[3]);
+        if (devMode==1) {
+            System.out.println("DEV-MODE : "+theComb[0] + theComb[1] + theComb[2] + theComb[3]);
         }
     }
 
@@ -129,13 +127,13 @@ public class Modules {
                 listResults = listResults + "-";
            }
         }
-        System.out.println("********** Indications : " + listResults);
+        System.out.println("-->    Indications : " + listResults);
         if (listResults.contains("====")) {
             victory=1;
             listResults ="";
-            System.out.println("****************************************");
-            System.out.println("GAGNÉ! Combinaison trouvée en " + nbTry + " coups.");
-            System.out.println("****************************************");
+            System.out.println("******************************************");
+            System.out.println("* GAGNÉ! Combinaison trouvée en " + nbTry + " coups. *");
+            System.out.println("******************************************");
         }
     }
 }
